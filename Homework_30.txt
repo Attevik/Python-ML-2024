@@ -1,0 +1,130 @@
+class Myshows():
+
+    def __init__(self,ShowName, platform, PremiereDate, MainActots, CurrentNumber=1, Rating=None ):
+        if not (self.check_ShowName(ShowName) and self.check_platform(platform) and self.check_PremiereDate(PremiereDate) and self.check_CurrentNumber(CurrentNumber) and self.check_Rating(Rating) and self.check_MainActots(MainActots)) :
+            raise ValueError
+        else:
+            self.__ShowName=ShowName
+            self.__platform=platform
+            self.__PremiereDate=PremiereDate
+            self.__CurrentNumber=CurrentNumber
+            self.__Rating=Rating
+            self.__MainActots=MainActots
+
+    @staticmethod
+    def check_ShowName(Showname):
+        if type(Showname)==str:
+            return Showname
+        else:
+            raise ValueError("a")
+        
+    @staticmethod
+    def check_platform(platform):
+        if type(platform)==str:
+            return platform
+        else:
+            raise ValueError("b")
+        
+    @staticmethod
+    def check_PremiereDate(PremiereDate):
+        if type(PremiereDate)==int and PremiereDate>0 :
+            return PremiereDate
+        else:
+            raise ValueError("c")
+
+    @staticmethod
+    def check_CurrentNumber(CurrentNumber):
+        if type(CurrentNumber)== int and CurrentNumber>0  :
+            return CurrentNumber
+        else:
+            raise ValueError("d")
+        
+    @staticmethod
+    def check_Rating(Rating):
+        if type(Rating)== int and Rating in range(1,10):
+            return Rating
+        else:
+            raise ValueError("e")
+        
+    
+    @staticmethod
+    def check_MainActots(MainActots):
+        if type(MainActots)==list:
+            return MainActots
+        else:
+            raise ValueError("f")
+        
+
+    @property
+    def ShowName(self):
+        return self.__ShowName
+    
+    @property 
+    def platform(self):
+        return self.__platform
+    
+    @property 
+    def PremiereDate(self):
+        return self.__PremiereDate
+    
+    @property
+    def MainActots(self):
+        return self.__MainActots
+    
+    @property
+    def CurrentNumber(self):
+        return self.__CurrentNumber
+    
+    @CurrentNumber.setter
+    def CurrentNumber(self, blbl):
+        if self.check_CurrentNumber(blbl):
+            self.__CurrentNumber = blbl 
+        else:
+            raise ValueError
+
+    @property
+    def Rating(self):
+        return self.__Rating
+    
+    @Rating.setter
+    def Rating(self, kkk):
+        if self.check_Rating(kkk):
+            self.__Rating=kkk
+        else:
+            raise ValueError
+
+    @Rating.deleter
+    def Rating(self):
+        del self.__Rating
+
+    def description(self):
+        return f" showname :{self.ShowName}, broadcating platform: {self.platform}, Premier date: {self.PremiereDate}, Cast: {self.MainActots}, Ongoing seires:{self.CurrentNumber}, Viewer rating: {self.Rating}" 
+
+    def update_cast_names(self, new_name):
+        if new_name not in self.MainActots:
+            self.MainActots.append(new_name)
+        else:
+            self.MainActots.remove(new_name)
+
+
+
+Myshow1=Myshows("Simpsons", "youtube", 2, ["Anna", "ani", "asss"], 4, 5 )
+
+print(Myshow1._Myshows__CurrentNumber)
+
+print(Myshow1.CurrentNumber)
+
+Myshow1.kkk=9
+print(Myshow1.kkk)
+
+print(Myshow1.description())
+
+Myshow1.update_cast_names("Tigran Mets")
+print(Myshow1._Myshows__MainActots)
+Myshow1.update_cast_names("asss")
+print(Myshow1._Myshows__MainActots)
+del Myshow1.Rating
+Myshow1.Rating = 8
+
+print(Myshow1.Rating)
+
