@@ -1,0 +1,32 @@
+class Mylist:
+
+    def __init__(self,list):
+
+        self.list=list
+
+
+    def append(self,new_element):
+        self.list.append(new_element)
+        return self.list
+    
+    def count(self,c):
+        if c in self.list:
+            return self.list.count(c)
+        else:
+            return 0
+
+    def join(self):
+        return "*".join(map(str,self.list))
+    
+    def pop(self):
+        
+        return self.list.pop(), self.list
+
+
+Mylist1=Mylist([1,2,6])
+print(Mylist1.append(8))
+print(Mylist1.count(1))
+print(Mylist1.join())
+print(Mylist1)
+print(Mylist1.pop())
+print(Mylist1)
